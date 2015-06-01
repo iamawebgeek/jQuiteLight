@@ -69,7 +69,7 @@
 	};
 
 	Marker.prototype.smartBehavior = function (string) {
-		return new RegExp(string + "[a-zA-Z¿-ﬂ‡-ˇ0-9]*", this.options.ignoreCase ? "gi" : "g");
+		return new RegExp(string + "[a-zA-Z–ê-–Ø–∞-—è0-9]*", this.options.ignoreCase ? "gi" : "g");
 	};
 
 	Marker.prototype.queryPosition = function (text) {
@@ -99,7 +99,7 @@
 	};
 
 	Marker.prototype.mark = function (node) {
-		$.each(node.childNodes, $.proxy(function (index, innerNode) {
+		var nodeWalker = function (index, innerNode) {
 			if (innerNode.nodeType === 3) {
 				var position = this.queryPosition(innerNode.textContent);
 				if (position !== -1) {
@@ -110,6 +110,7 @@
 								split = innerNode.splitText(this.queryPosition(innerNode.textContent));
 								split.splitText(match.length);
 								split.parentNode.replaceChild(this.wrapString($(split).clone()).get(0), split);
+								nodeWalker.call(this,index + 1,$(innerNode).siblings().get(index).nextSibling);
 							}
 						}
 					} else {
@@ -117,6 +118,7 @@
 							split = innerNode.splitText(this.queryPosition(innerNode.textContent));
 							split.splitText(this.query.length);
 							split.parentNode.replaceChild(this.wrapString($(split).clone()).get(0), split);
+							nodeWalker.call(this,index + 1,$(innerNode).siblings().get(index).nextSibling);
 						}
 					}
 				}
@@ -127,7 +129,8 @@
 			{
 				this.mark(innerNode);
 			}
-		}, this));
+		};
+		$.each(node.childNodes, $.proxy(nodeWalker, this));
 	};
 
 	$.fn.textOnly = function() {
