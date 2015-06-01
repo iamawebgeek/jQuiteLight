@@ -43,27 +43,27 @@ Type: bool
 Default: `false`  
 Expected a boolean value for using `RegExp` extending function for string queries.
 
-`beforeMark`
+`beforeMark`  
 Type: Function  
 Default: `function (text) { return true; }`  
 Function deciding match highlight. Accepts a matched string. Should return a boolean value.
  
-`afterMark`
+`afterMark`  
 Type: Function  
 Default: `function (element) {}`  
 Function for manipulating with highlight. Accepts a jQuery element (wrapper of current match).
 
-`markTag`
+`markTag`  
 Type: String  
 Default: `"span"`  
 Name of an HTML tag for wrapping matches.
 
-`markData`
+`markData`  
 Type: Object  
 Default: `{ "class": "marked-text" }`  
 Attributes to be applied for wrapper.
 
-`markCss`
+`markCss`  
 Type: Object  
 Default: `{}`  
 Css properties to be applied for wrapper.
