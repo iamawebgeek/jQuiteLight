@@ -20,6 +20,11 @@ $(".element-to-be-highlighted").mark(["test", "another-test"], {
 	},
 	ignoreCase: false
 });
+// To remove highlight use:
+// Get array of highlights
+var HIGHLIGHTS = $(".element-to-be-highlighted").data("marker");
+// Destroy
+HIGHLIGHTS[0].destroy();
 ```
 
 ##Options
