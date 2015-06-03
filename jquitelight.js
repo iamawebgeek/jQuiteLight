@@ -99,37 +99,43 @@
 	};
 
 	Marker.prototype.mark = function (node) {
-		var nodeWalker = function (index, innerNode) {
-			if (innerNode.nodeType === 3) {
-				var position = this.queryPosition(innerNode.textContent);
-				if (position !== -1) {
-					if (this.isRegex) {
-						var match = innerNode.textContent.match(this.query)[0];
-						if (this.options.beforeMark(match)) {
-							if (this.smartBehaviorMatchLogic(match)) {
+		var
+			next = function (index, innerNode) {
+				var nextElement = $(innerNode).siblings().get(index);
+				if (nextElement !== undefined && nextElement.nextSibling !== null)
+					nodeWalker.call(this,index + 1,nextElement.nextSibling);
+			},
+			nodeWalker = function (index, innerNode) {
+				if (innerNode.nodeType === 3) {
+					var position = this.queryPosition(innerNode.textContent);
+					if (position !== -1) {
+						if (this.isRegex) {
+							var match = innerNode.textContent.match(this.query)[0];
+							if (this.options.beforeMark(match)) {
+								if (this.smartBehaviorMatchLogic(match)) {
+									split = innerNode.splitText(this.queryPosition(innerNode.textContent));
+									split.splitText(match.length);
+									split.parentNode.replaceChild(this.wrapString($(split).clone()).get(0), split);
+									next.call(this, index, innerNode);
+								}
+							}
+						} else {
+							if (this.options.beforeMark(this.query)) {
 								split = innerNode.splitText(this.queryPosition(innerNode.textContent));
-								split.splitText(match.length);
+								split.splitText(this.query.length);
 								split.parentNode.replaceChild(this.wrapString($(split).clone()).get(0), split);
-								nodeWalker.call(this,index + 1,$(innerNode).siblings().get(index).nextSibling);
+								next.call(this, index, innerNode);
 							}
 						}
-					} else {
-						if (this.options.beforeMark(this.query)) {
-							split = innerNode.splitText(this.queryPosition(innerNode.textContent));
-							split.splitText(this.query.length);
-							split.parentNode.replaceChild(this.wrapString($(split).clone()).get(0), split);
-							nodeWalker.call(this,index + 1,$(innerNode).siblings().get(index).nextSibling);
-						}
 					}
+				} else if(
+					innerNode.nodeType === 1 &&
+					innerNode.childNodes.length > 0 &&
+					$.inArray(innerNode.tagName, this.options.skippedTags) === -1)
+				{
+					this.mark(innerNode);
 				}
-			} else if(
-				innerNode.nodeType === 1 &&
-				innerNode.childNodes.length > 0 &&
-				$.inArray(innerNode.tagName, this.options.skippedTags) === -1)
-			{
-				this.mark(innerNode);
-			}
-		};
+			};
 		$.each(node.childNodes, $.proxy(nodeWalker, this));
 	};
 
