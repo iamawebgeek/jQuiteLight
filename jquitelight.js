@@ -69,7 +69,7 @@
 	};
 
 	Marker.prototype.smartBehavior = function (string) {
-		return new RegExp(string + "[a-zA-ZА-Яа-я0-9]*", this.options.ignoreCase ? "gi" : "g");
+		return new RegExp("[^\\W]*" + string + "[^\\W]*", this.options.ignoreCase ? "gi" : "g");
 	};
 
 	Marker.prototype.queryPosition = function (text) {
@@ -95,7 +95,12 @@
 	};
 
 	Marker.prototype.smartBehaviorMatchLogic = function (currentMatch) {
-		return !(this.baseQuery && this.baseQuery.length < 3 && currentMatch > this.baseQuery);
+		if (!this.baseQuery)
+			return false;
+		var
+			queryLength = this.baseQuery.length,
+			matchLength = currentMatch.length;
+		return !(queryLength < 3 && matchLength == matchLength);
 	};
 
 	Marker.prototype.mark = function (node) {
@@ -103,7 +108,7 @@
 			next = function (index, innerNode) {
 				var nextElement = $(innerNode).siblings().get(index);
 				if (nextElement !== undefined && nextElement.nextSibling !== null)
-					nodeWalker.call(this,index + 1,nextElement.nextSibling);
+					nodeWalker.call(this, index + 1, nextElement.nextSibling);
 			},
 			nodeWalker = function (index, innerNode) {
 				if (innerNode.nodeType === 3) {
@@ -128,11 +133,10 @@
 							}
 						}
 					}
-				} else if(
+				} else if (
 					innerNode.nodeType === 1 &&
 					innerNode.childNodes.length > 0 &&
-					$.inArray(innerNode.tagName, this.options.skippedTags) === -1)
-				{
+					$.inArray(innerNode.tagName, this.options.skippedTags) === -1) {
 					this.mark(innerNode);
 				}
 			};
