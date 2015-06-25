@@ -5,7 +5,7 @@ jQuery Smart Search Query Highlight Plugin
 - Works with Regular Expressions.
 - An array of search queries can be applied at once.
 - Smart highlight logic is included.
-- Additional logic can be applied on `beforeMark` logic.
+- Additional logic can be applied using `beforeMark` property.
 - Each highlight is held separately, so it is easy to remove highlight by index.
 
 ##Usage
