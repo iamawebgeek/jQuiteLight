@@ -1,7 +1,7 @@
 # jQuiteLight
 jQuery Smart Search Query Highlight Plugin
 
-###Features
+##Features
 - Works with Regular Expressions.
 - An array of search queries can be applied at once.
 - Smart highlight logic is included.
