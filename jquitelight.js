@@ -1,4 +1,4 @@
-/*!
+/**
  *
  * jQuery Smart Search Query Highlight Plugin
  *
@@ -7,14 +7,22 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
+ * @version 1.1.0
  */
- 
+(function (factory) {
 
-(function ($) {
+	if (typeof define === "function" && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(["jquery"], factory);
+	} else if (typeof exports === "object") {
+		// Node.JS
+		factory(require("jquery"));
+	} else {
+		// Browser
+		factory(window.jQuery);
+	}
 
-	if (!$)
-		throw new Error("jQuery library must be loaded first");
-
+})(function ($) {
 	var
 		Marker = function (element, options, query) {
 			this.options = $.extend({}, Marker.DEFAULTS, options);
@@ -143,14 +151,6 @@
 		$.each(node.childNodes, $.proxy(nodeWalker, this));
 	};
 
-	$.fn.textOnly = function() {
-		return this.clone()
-			.children()
-			.remove()
-			.end()
-			.text();
-	};
-
 	$.fn.mark = function (query, settings) {
 		if (!$.trim(query) || this.text().trim()==="")
 			return this;
@@ -170,4 +170,4 @@
 		});
 	};
 
-})(window.jQuery);
+});

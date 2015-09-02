@@ -1,0 +1,26 @@
+{
+  "name": "jquitelight",
+  "version": "1.1.0",
+  "description": "Smart jQuery Search Highlight Plugin",
+  "main": "jquitelight.js",
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamwebdesigner/jQuiteLight.git"
+  },
+  "keywords": [
+    "search",
+    "highlight",
+    "jQuery",
+    "mark",
+    "text"
+  ],
+  "author": "iamwebdesigner",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/iamwebdesigner/jQuiteLight/issues"
+  },
+  "homepage": "https://github.com/iamwebdesigner/jQuiteLight"
+}
