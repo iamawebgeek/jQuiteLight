@@ -8,6 +8,13 @@ jQuery Smart Search Query Highlight Plugin
 - Additional logic can be applied using `beforeMark` property.
 - Each highlight is held separately, so it is easy to remove highlight by index.
 
+##Installation
+Installing using node package manager.  
+Type the following in your console inside your project directory:  
+```
+npm install jquitelight
+```
+
 ##Usage
 ```js
 
