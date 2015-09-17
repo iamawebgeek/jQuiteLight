@@ -1,6 +1,6 @@
 {
   "name": "jquitelight",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Smart jQuery Search Highlight Plugin",
   "main": "jquitelight.js",
   "dependencies": {

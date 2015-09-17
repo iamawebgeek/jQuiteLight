@@ -2,7 +2,7 @@
  *
  * jQuery Smart Search Query Highlight Plugin
  *
- * @author iamwebdesigner batkamolodec@gmail.com
+ * @author iamwebdesigner <batkamolodec@gmail.com>
  * @license Apache License Version 2.0
  *
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -59,6 +59,7 @@
 		escape = function escapeRegExp(str) {
 			return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 		},
+		mark = $.fn.mark,
 		dump,
 		split;
 
@@ -168,6 +169,13 @@
 			data.push(new Marker(this,settings,query));
 			$(this).data("marker", data);
 		});
+	};
+
+	$.fn.mark.Marker = Marker;
+
+	$.fn.mark.noConflict = function () {
+		$.fn.mark = mark;
+		return this;
 	};
 
 });

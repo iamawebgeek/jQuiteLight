@@ -41,6 +41,25 @@ var HIGHLIGHTS = $(".element-to-be-highlighted").data("marker");
 HIGHLIGHTS[0].destroy();
 ```
 
+###Resolving plugin conflicts
+```js
+// if you have another plugin with such jQuery method
+// you can get overridden method by using noConflict method
+var prevMarkMethod = $.fn.mark.noConflict();
+$.fn.mark.myCoolMark = prevMarkMethod;
+```
+
+###Making changes into plugin
+```js
+// starting from version v1.2.0 plugin core object is linked to jQuery method
+var plugin = $.fn.mark.Marker,
+	oldWrapStringMethod = plugin.prototype.wrapString;
+plugin.prototype.wrapString = function (content) {
+	console.log(content);
+	return oldWrapStringMethod.call(this, content);
+}
+```
+
 ##Options
 `skippedTags`  
 Type: array  
