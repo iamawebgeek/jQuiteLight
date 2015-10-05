@@ -1,21 +1,28 @@
 # jQuiteLight
 jQuery Smart Search Query Highlight Plugin
 
-##Features
+## Features
 - Works with Regular Expressions.
 - An array of search queries can be applied at once.
 - Smart highlight logic is included.
 - Additional logic can be applied using `beforeMark` property.
 - Each highlight is held separately, so it is easy to remove highlight by index.
 
-##Installation
+## Installation
 Installing using node package manager.  
 Type the following in your console inside your project directory:  
 ```
 npm install jquitelight
 ```
 
-##Usage
+Inline HTML including
+```html
+<!-- Note: jQuery version should not be less than 1.6 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+<script src="path/to/plugin/jquitelight.js"></script>
+```
+
+## Usage
 ```js
 
 // basic highlighting
@@ -41,7 +48,7 @@ var HIGHLIGHTS = $(".element-to-be-highlighted").data("marker");
 HIGHLIGHTS[0].destroy();
 ```
 
-###Resolving plugin conflicts
+### Resolving plugin conflicts
 ```js
 // if you have another plugin with such jQuery method
 // you can get overridden method by using noConflict method
@@ -49,7 +56,7 @@ var prevMarkMethod = $.fn.mark.noConflict();
 $.fn.mark.myCoolMark = prevMarkMethod;
 ```
 
-###Making changes into plugin
+### Making changes into plugin
 ```js
 // starting from version v1.2.0 plugin core object is linked to jQuery method
 var plugin = $.fn.mark.Marker,
@@ -60,7 +67,7 @@ plugin.prototype.wrapString = function (content) {
 }
 ```
 
-##Options
+## Options
 `skippedTags`  
 Type: array  
 Default: `["script", "style"]`  
@@ -92,6 +99,7 @@ Default: `"span"`
 Name of an HTML tag for wrapping matches.
 
 `markData`  
+**Notice: DEPRECATED**  
 Type: Object  
 Default: `{ "class": "marked-text" }`  
 Attributes to be applied for wrapper.
