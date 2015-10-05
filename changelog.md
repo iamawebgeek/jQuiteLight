@@ -2,7 +2,7 @@
 
 ## v2.0.0
 ### Changes
-- When object with property `query` is passed as `<string|RegExp|number|object>` to highlight, its value would be used to be highlighted. In the previous versions such objects were converted to string using `toString` method
+- When object with property `query` is passed as `<string|RegExp|number|object>` to highlight, its value would be used to be highlighted. Other properties are combined with the plugin settings. In the previous versions such objects were converted to string using `toString` method
 - Deprecated property `markCss`. Use css classes instead
 
 ## v1.2.0

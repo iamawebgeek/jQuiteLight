@@ -67,6 +67,39 @@ plugin.prototype.wrapString = function (content) {
 }
 ```
 
+## Advanced usage (tricks)
+```js
+// starting version 2.0.0
+// make some strings inside the text links with specific url
+$(".some-content").mark([
+	{
+		query: "test",
+		markData: {
+			href: "http://www.example.com/test"
+		}
+	},
+	{
+		query: "another-test",
+		markData: {
+			href: "/under-domain-link"
+        }
+	},
+	{
+        query: "strict lower case text",
+        ignoreCase: false,
+        markData: {
+            title: "advanced usage test",
+            href: "/strict-lower-case"
+        }
+    }], {
+	markData: {
+		"class": "linked"
+	},
+	markTag: "a",
+	ignoreCase: true
+});
+```
+
 ## Options
 `skippedTags`  
 Type: array  
