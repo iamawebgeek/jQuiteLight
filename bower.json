@@ -1,0 +1,27 @@
+{
+  "name": "jquitelight",
+  "description": "Smart jQuery Search Highlight Plugin",
+  "main": "jquitelight.js",
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "keywords": [
+    "search",
+    "highlight",
+    "jQuery",
+    "mark",
+    "text"
+  ],
+  "authors": [
+    "iamwebdesigner"
+  ],
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/iamwebdesigner/jQuiteLight",
+  "moduleType": [],
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

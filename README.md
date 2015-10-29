@@ -15,6 +15,11 @@ Type the following in your console inside your project directory:
 npm install jquitelight
 ```
 
+If you have [bower](http://bower.io) installed in your pc, you can install it with command:
+```
+bower install jquitelight
+```
+
 Inline HTML including
 ```html
 <!-- Note: jQuery version should not be less than 1.6 -->
@@ -97,6 +102,15 @@ $(".some-content").mark([
 	},
 	markTag: "a",
 	ignoreCase: true
+});
+
+// excluding some sensitive words from matching when using together with smart behaviour
+$(".text-container").mark("each word occurence from this sentence should be highlighted".split(" "), {
+	useSmartBehavior: true,
+	beforeMark: function (match) {
+		// exclude words "bee" and "teach" 
+		return match !== "bee" && match !== "teach";	
+	}
 });
 ```
 

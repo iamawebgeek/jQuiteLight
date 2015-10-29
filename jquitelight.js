@@ -7,7 +7,7 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * @version 2.0.0
+ * @version 2.1.0
  */
 (function (factory) {
 
@@ -86,15 +86,11 @@
 		markTag: "span",
 		markData: {
 			"class": "marked-text"
-		},
-		/**
-		 * @deprecated since 2.0.0
-		 */
-		markCss: {}
+		}
 	};
 
 	Marker.prototype.smartBehavior = function (string) {
-		return new RegExp("[^\\W]*" + string + "[^\\W]*", this.options.ignoreCase ? "gi" : "g");
+		return new RegExp("[^\\W]*" + escape(string) + "[^\\W]*", this.options.ignoreCase ? "gi" : "g");
 	};
 
 	Marker.prototype.queryPosition = function (text) {
@@ -120,7 +116,6 @@
 	Marker.prototype.wrapString = function (content) {
 		dump = $("<" + this.options.markTag + "/>", this.options.markData);
 		dump.append(content);
-		dump.css(this.options.markCss);
 		this.marks.push(dump);
 		this.options.afterMark.call(dump);
 		return dump;
