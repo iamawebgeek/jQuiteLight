@@ -15,7 +15,7 @@ Type the following in your console inside your project directory:
 npm install jquitelight
 ```
 
-If you have [bower](http://bower.io) installed in your pc, you can install it with command:
+If you have [bower](http://bower.io) installed in your pc, you can install the plugin using the command:
 ```
 bower install jquitelight
 ```
@@ -146,12 +146,6 @@ Default: `"span"`
 Name of an HTML tag for wrapping matches.
 
 `markData`  
-**Notice: DEPRECATED**  
 Type: Object  
 Default: `{ "class": "marked-text" }`  
 Attributes to be applied for wrapper.
-
-`markCss`  
-Type: Object  
-Default: `{}`  
-Css properties to be applied for wrapper.
